@@ -1,152 +1,114 @@
-<a id="readme-top"></a>
+# 🎮 REMNANTS
 
-<!-- SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+## 🧠 Game Summary (Pitch / Story Teaser)
 
-<!-- HEADER -->
-<br />
-<div align="center">
-    <a href="https://github.com/BudzioT/Godot_Super-Wakatime">
-        <img src="https://cloud-bo1ln2br1-hack-club-bot.vercel.app/0godotwaka22.png"  alt="Godot Wakatime"/>
-    </a>
-    <h3 align="center"> Godot Super Wakatime </h3>
-    <p align="center">
-        Tool to measure time spent in loved by many people game engine - Godot
-        <br />
-        Officially approved to use in High Seas event created by Hack Club
-        <br />
-        <br />
-        <a href="https://godotengine.org/asset-library/asset/3484">Get from Asset Lib</a>
-        ·
-        <a href="https://youtu.be/rqAc-YdVXyM">View Demo</a>
-        ·
-        <a href="https://github.com/BudzioT/Godot_Super-Wakatime/issues/new">Report Bug / Request Feature</a>
-    </p>
-</div>
+You are two memories. Different, distant — and yet, bound by the same fate.
 
-<!-- CONTENTS -->
-<details>
-    <summary>Table of Contents</summary>
-    <ol>
-        <li>
-            <a href="#about">About The Project</a>
-            <ul>
-                <li><a href="#built-with">Built Using</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#getting-started">Getting Started</a>
-            <ul>
-                <li><a href="#installation">Installation</a></li>
-            </ul>
-        </li>
-        <li><a href="#usage">Usage</a></li>
-        <li><a href="#license">License</a></li>
-    </ol>
-</details>
+Inside a collapsing mind, you flicker between fragments of what once was.  
+The red pulses come — slow and sharp — to erase you.  
+Stop moving, and the mind forgets you even faster.
 
+There’s no winning. Only surviving. Only the hope of staying remembered… just a little longer.
 
-<!-- ABOUT -->
-## About The Project
-<br />
+_A surreal top-down survival game where movement is survival, memory is life, and stillness is your undoing._
 
-[![Product Screenshot][product-screenshot]](https://waka.hackclub.com)
+---
 
-This tool can successfully measure time spent building your games or apps in Godot.
-<br />
-Here's why:
-* It differentiates between switching a scene and script
-* It counts key presses as coding and mouse clicks as building scene
-* Changing scene structure results in a heartbeat sent
-* It correctly detects OS, machine name, language, editor, files
-* It can detect your cursor line and position
-* Time is split between: Building, Coding, Testing
-* In the future it will also detect testing your projects
+## 📄 Game Design Document
 
-It works on both Linux and Windows, it wasn't tested on macOS yet
-<br />
-You can also see your time spent in the editor itself:
-[![Time in editor][time-screenshot]]
+### 🏷️ Title
 
-<p align="right">(<a href="#readme-top">top</a>)</p>
+**REMNANTS**
 
+### 📝 Short Description
 
-### Built Using
-I used the Ouch! CLI tool for decompression of files <br />
-This project was built using one simple, yet powerful language.<br />
-It required a lot of workarounds, but it was a pleasure to use it
-* [![GDScript][Godot]][Godot-url]
-* [![Ouch!][Ouch-shield]][Ouch-url]
+A minimalist 2D survival game where you control two memories trying to survive inside a fading mind.  
+Keep moving, dodge the erasing pulses, and stay remembered — together.
 
-<p align="right">(<a href="#readme-top">top</a>)</p>
+---
 
-<!-- GETTING STARTED -->
-## Getting Started
-How to install and use this software? It's easy!
+### 🎯 Game Objective
 
-### Installation
-You can either download it from the [Godot Asset Library](https://godotengine.org/asset-library/asset/3484).
-<br />Or you can manually install it, here's how to do it!
-1. Clone the repository
-    ```sh
-    git clone https://github.com/BudzioT/Godot_Super-Wakatime.git
-    ```
-2. Go into your project
-3. Insert the entire `./addons` folder into your project `res://` directory
+- Survive as long as possible inside a collapsing memoryspace.
+- Continuously move both memories to avoid detection and erasure.
+- Dodge incoming erasure pulses and collect fragments of memory to recover.
+- **If either memory is lost, the game ends.**
 
-<p align="right">(<a href="#readme-top">top</a>)</p>
+---
 
-<!-- USAGE -->
-## Usage
-Don't know how to use this plugin? Here are the steps:
-1. Turn on the plugin in your plugins. In your `Project -> Project Settings -> Plugins -> `Click the `Enable` checkbox near this plugin
-2. If prompted for API key, provide it from Wakatime website
-3. if there is an issue with it, please manually create `~/.wakatime.cfg` file with these contents:
-    ```sh
-    [settings]
-    api_key=xxxx
-    ```
-    Where xxxx is your api key
-<br /><br />
-If you are coming from High Seas used this:
-    ```sh
-    [settings]
-    api_url = https://waka.hackclub.com/api
-    api_key=xxxx
-    ```
-4. Wakatime CLI should have been installed automatically along with Ouch! Decompression library
-5. Work on your project! You should see your results on either Wakatime or Hackatime!
-6. You can also see your time at the bottom panel
+### 🕹️ Core Mechanics
 
-<p align="right">(<a href="#readme-top">top</a>)</p>
+| Mechanic              | Description                                                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Dual Control**      | Player controls two memory entities independently (e.g. WASD + Arrow keys).                                        |
+| **Stillness Erasure** | If either memory remains still for ~3 seconds, a detection event triggers: audio, spotlight, and eventual erasure. |
+| **Erasing Pulses**    | Red pulses sweep in from the edges at intervals. Contact shrinks and dims the memory (no health bars used).        |
+| **Memory Fragments**  | Periodic pickups (images, words, sounds) that restore part of the memory's glow and size.                          |
+| **Visual Health**     | Memory health is shown by glow intensity, size, and behavior — no numeric indicators.                              |
+| **Shared Death**      | If one memory is erased, the other vanishes too. Game over.                                                        |
 
-<!-- LICENSE -->
-## License
+---
 
-Distributed under the MIT License. See `LICENSE` for more information.
+### ⛔ Obstacles & Enemies
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+| Type                             | Description                                                           |
+| -------------------------------- | --------------------------------------------------------------------- |
+| **Red Pulses**                   | Linear beams that spawn at edges and move inward, erasing on contact. |
+| **Stillness Erasure**            | Ambient detection that punishes inactivity — causes instant removal.  |
+| **Decay Over Time** _(optional)_ | A slow fade over time without fragments to reinforce urgency.         |
 
+---
 
-<!-- URLS -->
-[contributors-shield]: https://img.shields.io/github/contributors/budziot/Godot_Super-Wakatime?style=for-the-badge
-[contributors-url]: https://github.com/BudzioT/Godot_Super-Wakatime/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/budziot/Godot_Super-Wakatime?style=for-the-badge
-[forks-url]: https://github.com/BudzioT/Godot_Super-Wakatime/forks
-[stars-shield]: https://img.shields.io/github/stars/budziot/Godot_Super-Wakatime?style=for-the-badge
-[stars-url]: https://github.com/BudzioT/Godot_Super-Wakatime/stargazers
-[issues-shield]: https://img.shields.io/github/issues/budziot/Godot_Super-Wakatime?style=for-the-badge
-[issues-url]: https://github.com/BudzioT/Godot_Super-Wakatime/issues
-[license-shield]: https://img.shields.io/github/license/budziot/Godot_Super-Wakatime?style=for-the-badge
-[license-url]: https://github.com/BudzioT/Godot_Super-Wakatime/blob/master/addons/godot_super-wakatime/LICENSE
-[product-screenshot]: https://cloud-j4wibbzz7-hack-club-bot.vercel.app/0image.png
-[product-logo]: https://cloud-j4wibbzz7-hack-club-bot.vercel.app/2godotwaka2.png
-[Godot]: https://img.shields.io/badge/Godot%20Engine-478CBF?logo=godotengine&logoColor=fff&style=flat
-[Godot-url]: https://godotengine.org/
-[Ouch-shield]: https://img.shields.io/badge/Ouch!-tool-blue?label=Ouch!
-[Ouch-url]: https://github.com/ouch-org/ouch
-[time-screenshot]: https://cloud-l88kldf50-hack-club-bot.vercel.app/0image.png
+### 🌌 Visual Design
+
+**Perspective:** Top-down (2D)
+
+**Characters:**
+
+- Two glowing orbs/blobs, different colors (suggesting different memories).
+- Change in size and brightness based on damage/health.
+- Leave subtle motion trails.
+
+**Environment:**
+
+- Dark, surreal “memory floor” with shifting textures or symbols.
+- Floating or scattered remnants of thoughts: text, photos, drawings.
+- No walls, just an endless flat “mindspace” with occasional parallax or particle layers.
+
+**Fragments:**
+
+- Memory pickups appear as flickering icons — text (`"11:32PM"`), image thumbnails, sketches.
+
+---
+
+### 🔊 Sound & Music
+
+| Element             | Description                                                                |
+| ------------------- | -------------------------------------------------------------------------- |
+| **Ambient Music**   | Lo-fi, fading memory tones, static, layered with reverb and subtle rhythm. |
+| **Stillness Sound** | Breathing or low humming starts after 1 second of stillness.               |
+| **Spotlight Lock**  | High-pitched ring + audio mute + erase sound (flash/pop).                  |
+| **Pulses**          | Buzz, static wave, or sweeping “scanner” audio.                            |
+| **Fragments**       | Soft chime or whisper sound when collected.                                |
+| **Death**           | Low cutoff hum + silence + fade to black with final echo (e.g. “…”).       |
+
+---
+
+### 📦 UI & Feedback
+
+- No health bars — **visual/audio cues only**.
+- No HUD clutter — immersive experience.
+
+**Game Over Screen:**
+
+- _“They are both forgotten now.”_
+- Or: _“Only fragments remain.”_
+- _(Optional: show timeline of survival or memory flashes on game over.)_
+
+---
+
+### 🧩 Additional Notes
+
+- Narrative is **environmental and visual**, not told through text or dialogue.
+- Focus is on **emotional tone, mechanical clarity, and symbolic storytelling**.
+- Suitable for submission to **game jams** or future expansion into an art-game.
