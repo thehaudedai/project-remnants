@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvj8mngh4qjfk"]
+
+[ext_resource type="Script" uid="uid://b4akb4pgfwtoy" path="res://scripts/one_time/main_menu.gd" id="1_fxamc"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_fxamc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+color = Color(0.12941177, 0.16862746, 0.2, 1)
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "PLAY"
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

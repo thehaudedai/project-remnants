@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg76te503qf8a"]
+
+[ext_resource type="PackedScene" uid="uid://dvhf3g4v8gk08" path="res://scenes/game_elements/blue_orb.tscn" id="1_qscqj"]
+[ext_resource type="PackedScene" uid="uid://c8u5reyum8fyf" path="res://scenes/game_elements/green_orb.tscn" id="2_3k17h"]
+
+[node name="MemorySurvival" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+color = Color(0.12941177, 0.16862746, 0.2, 1)
+
+[node name="BlueOrb" parent="." instance=ExtResource("1_qscqj")]
+position = Vector2(356, 375)
+
+[node name="GreenOrb" parent="." instance=ExtResource("2_3k17h")]
+position = Vector2(1104, 379)
