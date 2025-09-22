@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://haihkojs2eh1"]
+
+[ext_resource type="Script" uid="uid://dydsgr0335dqe" path="res://scripts/script_game_elements/erasure_pulse.gd" id="1_p2m8o"]
+[ext_resource type="Texture2D" uid="uid://ipxvncyobaet" path="res://assets/sprites/erasure_pulse.png" id="1_qp1b3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qp1b3"]
+radius = 4.0
+height = 60.0
+
+[node name="ErasurePulse" type="Area2D"]
+script = ExtResource("1_p2m8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_qp1b3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qp1b3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
