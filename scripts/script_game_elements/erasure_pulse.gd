@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 # ------------------------------------------------------------------------------
 # Checks if Pulse is out of the Screen: BOOLEAN
 func outside_border():
-	if position.x < -100 or position.x > (RIGHT_BOUND+100) or position.y < -100 or position.y > (LOWER_BOUND+100):
+	if position.x < -150 or position.x > (RIGHT_BOUND+150) or position.y < -150 or position.y > (LOWER_BOUND+150):
 		return true
 # ------------------------------------------------------------------------------
 
