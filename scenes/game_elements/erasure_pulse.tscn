@@ -19,6 +19,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_qp1b3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
 offset_left = -31.0
 offset_top = -5.0
 offset_right = -25.0

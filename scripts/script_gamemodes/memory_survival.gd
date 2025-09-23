@@ -2,8 +2,8 @@ extends Node2D
 
 # ------------------------------------------------------------------------------
 # Game Elements
-@onready var blue_orb: CharacterBody2D = $BlueOrb
-@onready var green_orb: CharacterBody2D = $GreenOrb
+@onready var blue_orb: CharacterBody2D = %BlueOrb
+@onready var green_orb: CharacterBody2D = %GreenOrb
 @onready var pulse_timer: Timer = $Timers/PulseTimer
 
 
@@ -17,6 +17,8 @@ var pulse_timer_range = 1
 
 # ------------------------------------------------------------------------------
 func _ready() -> void:
+	Engine.time_scale = 1
+	add_child(get_death_menu())
 	pulse_timer.start(randf_range(1, pulse_timer_range+1))
 # ------------------------------------------------------------------------------
 
@@ -72,6 +74,22 @@ func spawn_pulse():
 # ------------------------------------------------------------------------------
 
 
+# ------------------------------------------------------------------------------
+func get_death_menu():
+	const death_menu_scene = preload("res://scenes/ui_and_resusable/death_menu.tscn")
+	var death_menu = death_menu_scene.instantiate()
+	death_menu.setup_orbs(blue_orb, green_orb)
+	return death_menu
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
 func _on_pulse_timer_timeout() -> void:
 	add_child(spawn_pulse())
 	pulse_timer.start(randf_range(0, pulse_timer_range))
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------

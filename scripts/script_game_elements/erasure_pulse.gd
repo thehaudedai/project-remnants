@@ -39,8 +39,9 @@ func outside_border():
 # Damages the object;
 	# If Character: Deals Damage
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("deal_damage"):
-		body.deal_damage()
+	if body.has_method("apply_damage"):
+		body.apply_damage()
+		queue_free()
 	# ------------------------------------------------------------------------------
 	# If Fragment: Destroys Fragment -> body.queue_free()
 func _on_area_entered(area: Area2D) -> void:

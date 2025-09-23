@@ -13,9 +13,11 @@ offset_bottom = 900.0
 color = Color(0.12941177, 0.16862746, 0.2, 1)
 
 [node name="BlueOrb" parent="." instance=ExtResource("1_qscqj")]
+unique_name_in_owner = true
 position = Vector2(356, 375)
 
 [node name="GreenOrb" parent="." instance=ExtResource("2_3k17h")]
+unique_name_in_owner = true
 position = Vector2(1104, 377)
 
 [node name="Timers" type="Node" parent="."]

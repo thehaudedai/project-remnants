@@ -7,6 +7,7 @@
 radius = 40.335785
 
 [node name="BlueOrb" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_r3ahk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
