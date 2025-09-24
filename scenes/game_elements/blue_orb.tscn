@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvhf3g4v8gk08"]
+[gd_scene load_steps=8 format=3 uid="uid://dvhf3g4v8gk08"]
 
 [ext_resource type="Script" uid="uid://8jrxu6trhk6h" path="res://scripts/script_game_elements/blue_orb.gd" id="1_r3ahk"]
 [ext_resource type="Texture2D" uid="uid://btvniocw1k7ve" path="res://assets/sprites/blue_orb.png" id="1_v2r4k"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_r3ahk"]
-radius = 40.335785
+[ext_resource type="Texture2D" uid="uid://0lw05qmpjb8q" path="res://assets/sprites/circle.png" id="3_ph7by"]
 
 [sub_resource type="Curve" id="Curve_r3ahk"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
@@ -14,9 +12,55 @@ point_count = 2
 offsets = PackedFloat32Array(0.006849315, 0.37671232, 0.7123288, 1)
 colors = PackedColorArray(0.015686275, 0.39215687, 0.47843137, 1, 0.025840001, 0.45895782, 0.5563933, 0.86200005, 0.28707156, 0.75668746, 0.8586215, 0.82900006, 0.5563933, 0.89420825, 0.96489865, 0.48100004)
 
+[sub_resource type="Curve" id="Curve_ph7by"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3ahk"]
+radius = 40.335785
+
 [node name="BlueOrb" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_r3ahk")
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="ExplosionEffect" type="CPUParticles2D" parent="Particles"]
+position = Vector2(40.333336, 40.555557)
+emitting = false
+amount = 30
+texture = ExtResource("3_ph7by")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_r3ahk")
+color = Color(2.1168277, 2.1168277, 2.1168277, 1)
+color_ramp = SubResource("Gradient_r3ahk")
+
+[node name="ExplosionEffectTimer" type="Timer" parent="Particles/ExplosionEffect"]
+one_shot = true
+
+[node name="TrailEffect" type="CPUParticles2D" parent="Particles"]
+position = Vector2(40.333336, 40.555557)
+emitting = false
+amount = 100
+texture = ExtResource("3_ph7by")
+lifetime = 0.3
+emission_shape = 1
+emission_sphere_radius = 37.14
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 150.0
+scale_amount_min = 0.05
+scale_amount_max = 0.07
+scale_amount_curve = SubResource("Curve_ph7by")
+color = Color(0.5730574, 1.4125248, 1.5937772, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
@@ -29,25 +73,15 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CircleShape2D_r3ahk")
 debug_color = Color(0, 0.60038817, 0.70000815, 0)
 
-[node name="Particles" type="Node2D" parent="."]
-
-[node name="ExplosionEffect" type="CPUParticles2D" parent="Particles"]
+[node name="OrbLight" type="PointLight2D" parent="."]
 position = Vector2(40.333336, 40.555557)
-emitting = false
-amount = 30
-texture = ExtResource("1_v2r4k")
-one_shot = true
-explosiveness = 1.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 400.0
-scale_amount_min = 0.01
-scale_amount_max = 0.02
-scale_amount_curve = SubResource("Curve_r3ahk")
-color_ramp = SubResource("Gradient_r3ahk")
+color = Color(0.9302129, 0.9302129, 1.5720325, 1)
+range_z_min = -100
+range_z_max = 100
+texture = ExtResource("3_ph7by")
 
-[node name="ExplosionEffectTimer" type="Timer" parent="Particles/ExplosionEffect"]
-one_shot = true
+[node name="FlickerTimer" type="Timer" parent="OrbLight"]
+wait_time = 0.1
 
 [connection signal="timeout" from="Particles/ExplosionEffect/ExplosionEffectTimer" to="." method="_on_explosion_effect_timer_timeout"]
+[connection signal="timeout" from="OrbLight/FlickerTimer" to="." method="_on_flicker_timer_timeout"]
