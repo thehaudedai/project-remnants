@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvhf3g4v8gk08"]
+[gd_scene load_steps=6 format=3 uid="uid://dvhf3g4v8gk08"]
 
 [ext_resource type="Script" uid="uid://8jrxu6trhk6h" path="res://scripts/script_game_elements/blue_orb.gd" id="1_r3ahk"]
 [ext_resource type="Texture2D" uid="uid://btvniocw1k7ve" path="res://assets/sprites/blue_orb.png" id="1_v2r4k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3ahk"]
 radius = 40.335785
+
+[sub_resource type="Curve" id="Curve_r3ahk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_r3ahk"]
+offsets = PackedFloat32Array(0.006849315, 0.37671232, 0.7123288, 1)
+colors = PackedColorArray(0.015686275, 0.39215687, 0.47843137, 1, 0.025840001, 0.45895782, 0.5563933, 0.86200005, 0.28707156, 0.75668746, 0.8586215, 0.82900006, 0.5563933, 0.89420825, 0.96489865, 0.48100004)
 
 [node name="BlueOrb" type="CharacterBody2D"]
 z_index = 2
@@ -19,3 +27,27 @@ offset = Vector2(313, 313)
 position = Vector2(40.333336, 40.555557)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CircleShape2D_r3ahk")
+debug_color = Color(0, 0.60038817, 0.70000815, 0)
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="ExplosionEffect" type="CPUParticles2D" parent="Particles"]
+position = Vector2(40.333336, 40.555557)
+emitting = false
+amount = 30
+texture = ExtResource("1_v2r4k")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+scale_amount_min = 0.01
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_r3ahk")
+color_ramp = SubResource("Gradient_r3ahk")
+
+[node name="ExplosionEffectTimer" type="Timer" parent="Particles/ExplosionEffect"]
+one_shot = true
+
+[connection signal="timeout" from="Particles/ExplosionEffect/ExplosionEffectTimer" to="." method="_on_explosion_effect_timer_timeout"]

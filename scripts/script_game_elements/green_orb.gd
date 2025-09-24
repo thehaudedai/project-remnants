@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 # -------------------------------------------------------------------------------
 # Game Elements
+@onready var explosion_effect: CPUParticles2D = $Particles/ExplosionEffect
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var explosion_effect_timer: Timer = $Particles/ExplosionEffect/ExplosionEffectTimer
 
 
 # Variables + Constants
@@ -20,24 +24,24 @@ signal green_orb_shattered
 
 # -------------------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
-	# Enable/Disbale Movement
-	if not can_move:
+	# Enable/Disbale Movement		
+	if can_move:
+		# Movement Mechanics
+		var direction = Vector2.ZERO
+		if Input.is_action_pressed("green_up"):
+			direction.y -= SPEED
+		if Input.is_action_pressed("green_down"):
+			direction.y += SPEED
+		if Input.is_action_pressed("green_right"):
+			direction.x += SPEED	
+		if Input.is_action_pressed("green_left"):
+			direction.x -= SPEED
+		if direction != Vector2.ZERO:
+			direction = direction.normalized()
+		velocity = direction * SPEED
+	else:
 		velocity = Vector2.ZERO
-		return
-	# -------------------------------------------------------------------------------
-	# Movement Mechanics
-	var direction = Vector2.ZERO
-	if Input.is_action_pressed("green_up"):
-		direction.y -= SPEED
-	if Input.is_action_pressed("green_down"):
-		direction.y += SPEED
-	if Input.is_action_pressed("green_right"):
-		direction.x += SPEED	
-	if Input.is_action_pressed("green_left"):
-		direction.x -= SPEED
-	if direction != Vector2.ZERO:
-		direction = direction.normalized()
-	velocity = direction * SPEED
+	
 	move_and_slide()
 	# -------------------------------------------------------------------------------
 	# Border Mechanics
@@ -74,8 +78,10 @@ func apply_stage(stage_number):
 		scale = Vector2(0.5, 0.5)
 		current_stage = 3
 	elif stage_number == 4:
-		queue_free()
-		emit_signal("green_orb_shattered")
+		explosion_effect.emitting = true
+		explosion_effect_timer.start(1)
+		sprite_2d.visible = false
+		collision_shape_2d.disabled = true
 		current_stage = 4
 # -------------------------------------------------------------------------------
 
@@ -91,4 +97,10 @@ func apply_heal():
 
 # -------------------------------------------------------------------------------
 
+# -------------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------------
+func _on_explosion_effect_timer_timeout() -> void:
+	emit_signal("green_orb_shattered")
 # -------------------------------------------------------------------------------

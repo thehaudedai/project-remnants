@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ajhhxunge8h"]
+
+[ext_resource type="Script" uid="uid://baxgsoavi8vdy" path="res://scripts/script_game_elements/fragment.gd" id="1_yak41"]
+
+[node name="Fragment" type="Area2D"]
+script = ExtResource("1_yak41")
